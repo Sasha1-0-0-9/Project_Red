@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#home'
+  get '/categories', to: 'categories#index'
   resources :categories, only: :show do 
   	resources :products, only: [:index, :show]
   end
