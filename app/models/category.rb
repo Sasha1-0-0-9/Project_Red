@@ -1,4 +1,8 @@
 class Category < ApplicationRecord
-	belongs_to :category
+	has_many :products
 	validates :title, presence: true
+	
+ def to_param
+  [id, title.parameterize].join("-")
+ end
 end

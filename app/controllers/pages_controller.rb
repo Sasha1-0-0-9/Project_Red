@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
   def home
-  	@products = Product.all
+  	@products = Product.paginate(page: params[:page], per_page: 6)
   end
 end

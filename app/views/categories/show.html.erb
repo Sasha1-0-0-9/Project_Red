@@ -1,0 +1,17 @@
+<div class="row db-6">
+<% @category.products.each do |product| %>
+<div class="col-lg-4 col-md-6 mb-4">
+	<div class="card h-100">
+		<div class="card-body">
+	  <img src="<%= product.image %>" class="card-img-top" alt="...">
+	</div>
+	  	<div class="card-footer">
+	    	<h5 class="card-title"><%= product.title %> </h5>
+	    	<p class="card-text text-truncate"><%= product.description %></p>
+	    	<p class="badge bg-light text-dark"><%= number_to_currency(product.price, unit: "$", separator: ",", delimiter: " ", format: "%n %u") %></p>
+	    	<a href="#" class="btn btn-primary">Buy now</a>
+	  	</div>
+	</div>
+</div>
+<% end %>
+</div> 
