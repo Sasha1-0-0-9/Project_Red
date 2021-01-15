@@ -6,4 +6,7 @@ class Product < ApplicationRecord
   def self.search(search)
     where('title LIKE ?', "%#{search}%")
   end
+   def to_param
+    "#{id}-#{title.gsub(/[^a-z0-9]+/i, '-')}"
+  end
 end
