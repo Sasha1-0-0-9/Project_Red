@@ -7,9 +7,6 @@ class CategoriesController < ApplicationController
       format.json { render json: @categories }
     end
   end
-
-  # GET /categories/1
-  # GET /categories/1.json
   def show
     @category = Category.find(params[:id])
     @products = @category.products
