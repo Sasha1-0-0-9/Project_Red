@@ -1,11 +1,10 @@
 class CategoriesController < ApplicationController
   def index
     @categories = Category.all
-        respond_to do |format|
+    respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @categories }
     end
-
   end
 
   def show
@@ -20,7 +19,9 @@ class CategoriesController < ApplicationController
     elsif params[:sort] == 'alphabetDesc'
       @products = Product.where(category_id: params[:id]).order(name: :DESC).paginate(page: params[:page], per_page: 6)
     elsif params[:min] || params[:max]
-      @products = Product.where(category_id: params[:id], price: [params[:min]].first..[params[:max]].last).paginate(page: params[:page], per_page: 6)
+      @products = Product.where(category_id: params[:id], price: [params[:min]].first..[params[:max]].last).paginate(
+        page: params[:page], per_page: 6
+      )
     end
   end
 end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-   resources :products do
+  resources :products do
     get 'search', on: :collection
   end
   resources :categories, only: :show do
