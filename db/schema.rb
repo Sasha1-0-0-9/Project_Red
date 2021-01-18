@@ -10,24 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_112_092_630) do
-  create_table 'categories', force: :cascade do |t|
-    t.string 'title'
-    t.integer 'order'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+ActiveRecord::Schema.define(version: 2021_01_18_191424) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title"
+    t.integer "order"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'products', force: :cascade do |t|
-    t.string 'title'
-    t.text 'description'
-    t.decimal 'price', precision: 10, scale: 2
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'category_id'
-    t.string 'image'
-    t.index ['category_id'], name: 'index_products_on_category_id'
+  create_table "products", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.decimal "price", precision: 10, scale: 2
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "category_id"
+    t.string "image"
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
-  add_foreign_key 'products', 'categories'
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "products", "categories"
 end
