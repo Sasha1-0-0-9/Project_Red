@@ -1,10 +1,7 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_category
+  helper_method :current_order
 
-  private
-
-  def current_category
-    @current_category = Category.find(@category.id)
+  def current_order
+    Order.find_or_create_by(user: current_user, status: :in_progress)
   end
-  helper_method :current_category
 end

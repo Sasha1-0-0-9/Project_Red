@@ -1,6 +1,19 @@
+<main class="container pt-5">
+	<div class="row pt-5">
+		<div class="col-sm-3 col-12">
+            <nav class="list-group">
+              <% Category.all.each do |category| %>
+                <%= active_link_to category.title, category_path(category), class: 'list-group-item'%>
+              <% end %>
+          </nav>
+          </div>
+          <div class="col-sm-9 col-12">
 
-<div class="row db-6">
+
+
+              <div class="row">
 <% @category.products.each do |product| %>
+
 <div class="col-lg-4 col-md-6 mb-4">
 	<div class="card h-100">
 		<div class="card-body">
@@ -15,7 +28,10 @@
 	</div>
 </div>
 <% end %>
-</div> 
+</div>
+</div>
+</div>
+</main>
 <div class="digg_pagination" style="text-align: center;">
     <%= will_paginate @products, :container => false %>
 </div>

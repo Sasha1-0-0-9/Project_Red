@@ -1,0 +1,37 @@
+<main class="container pt-5">
+	<div class="row pt-5">
+		<% if @items.collect(&:quantity).sum == 0 %>
+			<h1>Your cart is empty &#128722;</h1>
+		<%else%>
+			<h1>Your cart &#128722;</h1>
+		<% end %>
+		<p class="invisible"><%= total_price = 0 %></p>
+         <div class="col-sm-9 col-12">
+         	<div class="row">
+         		<% @items.each do |item| %>
+         		<% total_price += item.product.price * item.quantity %>
+         		<div class="col-lg-4 col-md-6 mb-4">
+         			<div class="card h-100">
+         				<div class="card-body">
+         					<img src="<%= item.product.image %>" class="card-img-top" alt="...">
+         				</div>
+         				<div class="card-footer">
+         					<h5 class="card-title"><%= item.product.title %> </h5>
+         					<p class="card-text text-truncate"><%= item.product.description %></p>
+         					<p class="badge bg-light text-dark"><%= number_to_currency(item.product.price, unit: "$", separator: ",", delimiter: " ", format: "%n %u") %></p>
+         					<p class="cart-text"> Quantity:<%= item.quantity %></p>
+         					<%= link_to '+', add_quantity_product_order_item_path(item.product, item), class: "btn btn-success", method: :get %>
+         					<%= link_to '-', remove_quantity_product_order_item_path(item.product, item), class: "btn btn-danger", method: :get %>
+         					<%= link_to 'Remove from cart', product_order_item_path(item.product, item), class: "btn btn-default", method: :delete,
+                            data: {confirm: 'Are you sure you want to delete the item?'}%>
+                        </div>
+                    </div>
+                </div>
+                <% end%>
+            </div>
+        </div>
+        <h3>Total price: <%= total_price %> </h3>
+        <hr>
+    </div>
+</div>
+</main>

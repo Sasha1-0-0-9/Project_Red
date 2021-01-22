@@ -13,18 +13,19 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
               </li>
+
+
               <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-                <ul class="dropdown-menu" aria-labelledby="dropdown01">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
+                                  <% if current_user %>
+              <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link'%>
+                            <p><%= link_to 'Cart',order_path(current_order),class: 'nav-link'%></p>
+              <% else %>
+              <%= link_to 'Sign in',new_user_session_path,class: 'nav-link'%>
+              <% end %>
             </ul>
+
 
             <%= form_tag products_path, method: :get, class: "form-inline my-2 my-lg-0 search_form", id: "search-form" do %>
               <%= text_field_tag(
@@ -37,4 +38,5 @@
 
           </div>
         </div>
+
       </nav>
