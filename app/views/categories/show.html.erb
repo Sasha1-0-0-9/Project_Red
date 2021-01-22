@@ -4,15 +4,17 @@
             <nav class="list-group">
               <% Category.all.each do |category| %>
                 <%= active_link_to category.title, category_path(category), class: 'list-group-item'%>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      	<% category.subcategories.each do |subcategory| %>
+                      	<%= link_to subcategory.title, subcategory, class: "dropdown-item", type: "button", id: subcategory.id %>
+                      	<% end %>
+      </div>
               <% end %>
           </nav>
           </div>
           <div class="col-sm-9 col-12">
-
-
-
-              <div class="row">
-<% @category.products.each do |product| %>
+          	<div class="row">
+		<% @category.products.each do |product| %>
 
 <div class="col-lg-4 col-md-6 mb-4">
 	<div class="card h-100">

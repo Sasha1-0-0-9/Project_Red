@@ -1,3 +1,12 @@
+      <main class="container pt-5">
+        <div class="row pt-5">
+          <div class="col-sm-3 col-12">
+            <nav class="list-group">
+              <% Category.all.each do |category| %>
+                <%= active_link_to category.title, category_path(category), class: 'list-group-item'%>
+              <% end %>
+          </div>
+          <div class="col-sm-9 col-12">
 <div class="filter-wrap">
     <div class="filter-list">
       Sort by price:
@@ -23,9 +32,15 @@
       <% end %>
     </div>
   </div>
-<div class="row">
-	<%= render @products %>
-</div>
+
+
+              <div class="row">
+              <%= render @products %>
+              </div>
+          </div>
+        </div>
+      </main><!-- /.container -->
+
 <div class="digg_pagination" style="text-align: center;">
     <%= will_paginate @products, :container => false %>
 </div>

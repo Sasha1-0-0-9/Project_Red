@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   def index
+        @categories = Category.where(parent_id: nil)
     @products = if params[:search]
                   Product.search(params[:search]).order(created_at: :desc).paginate(page: params[:page], per_page: 6)
                 else
@@ -50,11 +51,6 @@ class ProductsController < ApplicationController
       end
     end
   end
-
-  def show
-    @product = Product.find(params[:id])
-  end
-
   def search
     @products = Product.where('name ILIKE ? OR description ILIKE ?', "%#{params[:query]}%", "%#{params[:query]}%").paginate(
       page: params[:page], per_page: 6

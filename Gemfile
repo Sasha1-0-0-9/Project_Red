@@ -19,6 +19,10 @@ gem 'activeadmin'
 
 gem 'devise'
 
+gem 'image_processing', '~> 1.2'
+
+gem "aws-sdk-s3", require: false
+
 gem 'sqlite3', '~> 1.4', group: :development
 # Use Puma as the app server
 gem 'puma', '~> 5.0'

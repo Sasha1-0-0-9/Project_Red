@@ -7,11 +7,11 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :products do
     get 'search', on: :collection
-    get 'show', on: :collection
   end
   resources :categories, only: :show do
-    resources :products, only: %i[index show]
+    resources :products, only: %i[index]
   end
+
   resources :products do
     resources :order_items, only: %i[create update destroy] do
       member do

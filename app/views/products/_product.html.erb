@@ -4,7 +4,6 @@
 	  <img src="<%= product.image %>" class="card-img-top" alt="...">
 	</div>
 	  	<div class="card-footer">
-	  		<%= link_to 'page', products_path, class: "btn btn-primary" %>
 	    	<h5 class="card-title"><%= product.title %> </h5>
 	    	<p class="card-text text-truncate"><%= product.description %></p>
 	    	<p class="badge bg-light text-dark"><%= number_to_currency(product.price, unit: "$", separator: ",", delimiter: " ", format: "%n %u") %></p>
