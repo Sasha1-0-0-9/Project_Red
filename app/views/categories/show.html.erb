@@ -1,20 +1,27 @@
+
 <main class="container pt-5">
 	<div class="row pt-5">
 		<div class="col-sm-3 col-12">
             <nav class="list-group">
-              <% Category.all.each do |category| %>
+              <% Category.roots.each do |category| %>
                 <%= active_link_to category.title, category_path(category), class: 'list-group-item'%>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                      	<% category.subcategories.each do |subcategory| %>
-                      	<%= link_to subcategory.title, subcategory, class: "dropdown-item", type: "button", id: subcategory.id %>
-                      	<% end %>
-      </div>
+
+
+                            <% if category.has_children? %>
+                             <% Category.children_of(category).each do |sub_category| %>
+                <i><%= active_link_to sub_category.title, category_path(sub_category), class: 'list-group-item'%></i>
+                <% end %>
+            <% end %>
+
               <% end %>
           </nav>
           </div>
           <div class="col-sm-9 col-12">
-          	<div class="row">
-		<% @category.products.each do |product| %>
+
+
+
+              <div class="row">
+<% @category.products.each do |product| %>
 
 <div class="col-lg-4 col-md-6 mb-4">
 	<div class="card h-100">
@@ -25,7 +32,9 @@
 	    	<h5 class="card-title"><%= product.title %> </h5>
 	    	<p class="card-text text-truncate"><%= product.description %></p>
 	    	<p class="badge bg-light text-dark"><%= number_to_currency(product.price, unit: "$", separator: ",", delimiter: " ", format: "%n %u") %></p>
-	    	<a href="#" class="btn btn-primary">Buy now</a>
+	    		<% if !current_user.nil?%>
+	    	<%= link_to 'Add to cart', product_order_items_path(product), method: :post, class: "btn btn-primary" %>
+	    	<%end%>
 	  	</div>
 	</div>
 </div>

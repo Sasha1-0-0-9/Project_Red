@@ -9,11 +9,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-
-        product_categories = @category.subcategories.each.map(&:id) << @category.id
-    @categories = Category.where(parent_id: nil)
     @products = Product.where(category_id: params[:id]).paginate(page: params[:page], per_page: 6)
-
     if params[:sort] == 'lowPrice'
       @products = Product.where(category_id: params[:id]).order(price: :ASC).paginate(page: params[:page], per_page: 6)
     elsif params[:sort] == 'highPrice'
@@ -76,6 +72,6 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.require(:category).permit(:title)
+    params.require(:category).permit(:title, :parent_id)
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_22_193437) do
+ActiveRecord::Schema.define(version: 2021_01_22_212005) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 2021_01_22_193437) do
     t.integer "order"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "parent_id"
-    t.index ["parent_id"], name: "index_categories_on_parent_id"
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
   create_table "order_items", force: :cascade do |t|

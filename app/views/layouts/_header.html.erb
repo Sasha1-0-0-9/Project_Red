@@ -1,6 +1,6 @@
       <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">Project Red</a>
+          <a class="navbar-brand" href="/" style="color: #f05454;">Project Red</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -18,11 +18,11 @@
               <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
               </li>
-                                  <% if current_user %>
-              <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link'%>
-                            <p><%= link_to 'Cart',order_path(current_order),class: 'nav-link'%></p>
+              <% if current_user %>
+                <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link'%>
+                <p><%= link_to 'Cart',order_path(current_order),class: 'nav-link'%></p>
               <% else %>
-              <%= link_to 'Sign in',new_user_session_path,class: 'nav-link'%>
+                <%= link_to 'Sign in',new_user_session_path,class: 'nav-link'%>
               <% end %>
             </ul>
 
@@ -33,7 +33,7 @@
                   params[:search],
                   placeholder: "Search"
               ) %>
-              <%= submit_tag "Search", class: 'btn btn-outline-success' %>
+              <%= submit_tag "Search", class: 'btn btn-outline-danger' %>
             <% end %>
 
           </div>
