@@ -1,46 +1,62 @@
-
 <main class="container pt-5">
 	<div class="row pt-5">
 		<div class="col-sm-3 col-12">
             <nav class="list-group">
               <% Category.roots.each do |category| %>
                 <%= active_link_to category.title, category_path(category), class: 'list-group-item'%>
-
-
-                            <% if category.has_children? %>
-                             <% Category.children_of(category).each do |sub_category| %>
-                <i><%= active_link_to sub_category.title, category_path(sub_category), class: 'list-group-item'%></i>
-                <% end %>
-            <% end %>
-
+                <% if category.has_children? %>
+                	<% Category.children_of(category).each do |sub_category| %>
+                	<i><%= active_link_to sub_category.title, category_path(sub_category), class: 'list-group-item'%></i>
+                	<% end %>
+            	<% end %>
               <% end %>
-          </nav>
-          </div>
-          <div class="col-sm-9 col-12">
+          	</nav>
+        </div>
+     <div class="col-sm-9 col-12">
 
-
-
-              <div class="row">
-<% @category.products.each do |product| %>
-
-<div class="col-lg-4 col-md-6 mb-4">
-	<div class="card h-100">
-		<div class="card-body">
-	  <img src="<%= product.image %>" class="card-img-top" alt="...">
-	</div>
-	  	<div class="card-footer">
-	    	<h5 class="card-title"><%= product.title %> </h5>
-	    	<p class="card-text text-truncate"><%= product.description %></p>
-	    	<p class="badge bg-light text-dark"><%= number_to_currency(product.price, unit: "$", separator: ",", delimiter: " ", format: "%n %u") %></p>
-	    		<% if !current_user.nil?%>
-	    	<%= link_to 'Add to cart', product_order_items_path(product), method: :post, class: "btn btn-primary" %>
-	    	<%end%>
-	  	</div>
-	</div>
-</div>
-<% end %>
-</div>
-</div>
+     	<div class="row">
+     		<% @category.products.each do |product| %>
+     		<div class="col-lg-4 col-md-6 mb-4">
+     			<div class="card h-100">
+     				<div class="card-body">
+     					<img src="<%= product.image %>" class="card-img-top" alt="...">
+     				</div>
+     				<div class="card-footer">
+     					<h5 class="card-title"><%= product.title %> </h5>
+     					<p class="card-text text-truncate"><%= product.description %></p>
+     					<p class="badge bg-light text-dark"><%= number_to_currency(product.price, unit: "$", separator: ",", delimiter: " ", format: "%n %u") %></p>
+     					<% if !current_user.nil?%>
+     					<%= link_to 'Add to cart', product_order_items_path(product), method: :post, class: "btn btn-primary" %>
+     					<%end%>
+     				</div>
+     			</div>
+     		</div>
+     		<% end %>
+     		<!-- 												ATTENTION
+     			Если при просмотре следующего костыля у вас появилось желание меня ударить, то я вас понимаю и не осуждаю -->
+     		<% if @category.has_children? %>
+     			<% Category.children_of(@category).ids.each do |id| %>
+     				<% Category.find(id).products.each do |product| %>
+     					<div class="col-lg-4 col-md-6 mb-4">
+     						<div class="card h-100">
+     							<div class="card-body">
+     								<img src="<%= product.image %>" class="card-img-top" alt="...">
+     							</div>
+     							<div class="card-footer">
+     								<h5 class="card-title"><%= product.title %> </h5>
+     								<p class="card-text text-truncate"><%= product.description %></p>
+     								<p class="badge bg-light text-dark"><%= number_to_currency(product.price, unit: "$", separator: ",", delimiter: " ", format: "%n %u") %></p>
+     								<% if !current_user.nil?%>
+     									<%= link_to 'Add to cart', product_order_items_path(product), method: :post, class: "btn btn-primary" %>
+     									<%end%>
+     								</div>
+     							</div>
+     						</div>
+     				<% end %>
+     			<% end %>
+     		<% end %>
+     	</div>
+     </div>
 </div>
 </main>
 <div class="digg_pagination" style="text-align: center;">

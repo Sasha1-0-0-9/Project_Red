@@ -26,7 +26,7 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @category = Category.new
+    @category = Category.new(:parent_id => params[:parent_id])
   end
 
   def create
@@ -72,6 +72,6 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.require(:category).permit(:title, :parent_id)
+    params.require(:category).permit(:title, :ancestry)
   end
 end

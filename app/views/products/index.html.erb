@@ -2,7 +2,7 @@
         <div class="row pt-5">
           <div class="col-sm-3 col-12">
             <nav class="list-group">
-              <% Category.all.each do |category| %>
+              <% Category.roots.each do |category| %>
                 <%= active_link_to category.title, category_path(category), class: 'list-group-item'%>
               <% end %>
           </div>
