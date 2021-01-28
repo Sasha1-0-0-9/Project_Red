@@ -18,4 +18,6 @@ class Product < ApplicationRecord
   end
 
 
+
+
 end

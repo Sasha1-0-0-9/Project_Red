@@ -5,4 +5,9 @@ module ApplicationHelper
     html_options[:class] = "#{html_options[:class]} #{active_class}" if current_page?(options)
     link_to(name, options, html_options, &block)
   end
+
+
+      def blank_stars(rating)
+    5 - rating
+  end
 end

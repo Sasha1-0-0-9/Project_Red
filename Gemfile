@@ -13,6 +13,8 @@ gem 'kaminari'
 
 gem 'font-awesome-rails'
 
+gem 'font-awesome-sass'
+
 gem 'rails_12factor'
 
 gem 'activeadmin'

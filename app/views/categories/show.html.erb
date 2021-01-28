@@ -22,7 +22,7 @@
      					<img src="<%= product.image %>" class="card-img-top" alt="...">
      				</div>
      				<div class="card-footer">
-     					<h5 class="card-title"><%= product.title %> </h5>
+     					<h5 class="card-title"><%= link_to product.title, product_path(product) %> </h5>
      					<p class="card-text text-truncate"><%= product.description %></p>
      					<p class="badge bg-light text-dark"><%= number_to_currency(product.price, unit: "$", separator: ",", delimiter: " ", format: "%n %u") %></p>
      					<% if !current_user.nil?%>
@@ -43,7 +43,7 @@
      								<img src="<%= product.image %>" class="card-img-top" alt="...">
      							</div>
      							<div class="card-footer">
-     								<h5 class="card-title"><%= product.title %> </h5>
+     								<h5 class="card-title"><%= link_to product.title, product_path(product) %> </h5>
      								<p class="card-text text-truncate"><%= product.description %></p>
      								<p class="badge bg-light text-dark"><%= number_to_currency(product.price, unit: "$", separator: ",", delimiter: " ", format: "%n %u") %></p>
      								<% if !current_user.nil?%>
