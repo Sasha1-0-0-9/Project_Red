@@ -53,6 +53,8 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+        @comment = @product.comments
+
   end
 
   def search
@@ -60,6 +62,12 @@ class ProductsController < ApplicationController
       page: params[:page], per_page: 6
     )
     render 'products/index'
+  end
+
+      def avg_rating
+    @total_rating = 0
+    @comments.each { |r| @total_rating += r.rating }
+    @average_rating = (@total_rating.to_f / @comments.count.to_f) if @comments.present?
   end
 
   def destroy

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   get 'orders/show'
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   # devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :products, only: %i[index]
   end
 
+  resources :comments
+  
   resources :products do
     resources :order_items, only: %i[create update destroy] do
       member do
@@ -20,6 +22,11 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :order_items, only: %i[create update destroy] do
+      member do
+        get 'complete'
+      end
+    end
 
   resources :orders, only: :show
   root 'pages#home'

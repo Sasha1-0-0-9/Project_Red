@@ -1,0 +1,17 @@
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<h2 style="text-align: center;">Comments</h2>
+<div class="comment">
+<% @product.comments.all.each do |c| %>
+    <br>
+    <h6>Author: <%= c.user.email %></h6>
+    <h6>Rate: <%= c.rating %></h6>
+    <h6>Feedback: <%= c.body %></h6>  
+    <hr>
+    <% end %>
+  </div>
+
+
+
+
+
+

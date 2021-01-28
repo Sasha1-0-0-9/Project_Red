@@ -1,0 +1,75 @@
+<!--<div class="pt-5">
+
+</div>
+
+
+		<div class="pt-5">
+		<h1><%= @product.title %></h1>
+		<img src="<%= @product.image %>" class="" alt="..." style="height: 350px;">
+		</div>-->
+		<!--Section: Block Content-->
+		
+		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<div class="pt-5">
+<section class="mb-5">
+
+  <div class="row">
+    <div class="col-md-6 mb-4 mb-md-0">
+
+      <div id="mdb-lightbox-ui"></div>
+
+      <div class="mdb-lightbox">
+
+        <div class="row product-gallery mx-1">
+
+          <div class="col-12 mb-0">
+  
+
+                <div class="pt-5">
+                <img src="<%= @product.image %>"
+                  class="img-fluid z-depth-1">
+                  </div>
+            
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="col-md-6 lefter" style="position: relative; left: -150px; top: 20px;">
+    	<div class="pt-5">
+      <h5><%= @product.title %></h5>
+      <p class="mb-2 text-muted text-uppercase small"><%= @product.category.title %></p>
+      <p class="text-muted"> Rating: <%= @product.rating %> </p>
+
+
+
+          
+
+
+
+
+
+  </div>
+      <p class="badge bg-light text-dark"><%= number_to_currency(@product.price, unit: "$", separator: ",", delimiter: " ", format: "%n %u") %></p>
+      <p class="pt-1"><%= @product.description %></p>
+      <div class="table-responsive">
+        <table class="table table-sm table-borderless mb-0">
+
+        </table>
+      </div>
+      <hr>
+		<%= link_to 'Add to cart', product_order_items_path(@product), method: :post, class: "btn btn-outline-danger"%>
+	    <%= link_to 'Add comment', new_comment_path(user_id: current_user, product_id: @product), method: :get, class: "btn btn-outline-danger"%>
+    </div>
+  </div>
+
+</section>
+<!--Section: Block Content-->
+</div>
+ <div class="col-6">
+
+   <%= render 'comments/comment_show' %>
+   </div>
+
+

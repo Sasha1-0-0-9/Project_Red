@@ -30,8 +30,11 @@
                 <% end%>
             </div>
         </div>
-        <h3>Total price: <%= total_price %> </h3>
-        <hr>
+        <% if @items.collect(&:quantity).sum != 0 %>
+	        <h3>Total price: <%= number_to_currency(total_price, unit: "$", separator: ",", delimiter: " ", format: "%n %u") %> </h3>
+	        <hr>
+	        <div class="text-center"><%= link_to "Confirm", complete_order_item_path, class: 'btn btn-success' %></div>
+	    <% end %>
     </div>
 </div>
 </main>

@@ -6,7 +6,7 @@
                 <%= active_link_to category.title, category_path(category), class: 'list-group-item'%>
                 <% if category.has_children? %>
                 	<% Category.children_of(category).each do |sub_category| %>
-                	<i><%= active_link_to sub_category.title, category_path(sub_category), class: 'list-group-item'%></i>
+                	<i><%=active_link_to sub_category.title, category_path(sub_category), class: 'list-group-item'%></i>
                 	<% end %>
             	<% end %>
               <% end %>
@@ -26,13 +26,13 @@
      					<p class="card-text text-truncate"><%= product.description %></p>
      					<p class="badge bg-light text-dark"><%= number_to_currency(product.price, unit: "$", separator: ",", delimiter: " ", format: "%n %u") %></p>
      					<% if !current_user.nil?%>
-     					<%= link_to 'Add to cart', product_order_items_path(product), method: :post, class: "btn btn-primary" %>
+     					<%= link_to 'Add to cart', product_order_items_path(product), method: :post, class: "btn btn-outline-danger" %>
      					<%end%>
      				</div>
      			</div>
      		</div>
      		<% end %>
-     		<!-- 												ATTENTION
+     		<!-- 									ATTENTION
      			Если при просмотре следующего костыля у вас появилось желание меня ударить, то я вас понимаю и не осуждаю -->
      		<% if @category.has_children? %>
      			<% Category.children_of(@category).ids.each do |id| %>
@@ -47,7 +47,7 @@
      								<p class="card-text text-truncate"><%= product.description %></p>
      								<p class="badge bg-light text-dark"><%= number_to_currency(product.price, unit: "$", separator: ",", delimiter: " ", format: "%n %u") %></p>
      								<% if !current_user.nil?%>
-     									<%= link_to 'Add to cart', product_order_items_path(product), method: :post, class: "btn btn-primary" %>
+     									<%= link_to 'Add to cart', product_order_items_path(product), method: :post, class: "btn btn-outline-danger" %>
      									<%end%>
      								</div>
      							</div>
