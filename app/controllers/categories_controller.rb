@@ -26,7 +26,7 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @category = Category.new(:parent_id => params[:parent_id])
+    @category = Category.new(parent_id: params[:parent_id])
   end
 
   def create

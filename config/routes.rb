@@ -13,7 +13,13 @@ Rails.application.routes.draw do
   end
 
   resources :comments
-  
+
+  resources :orders, only: %i[create update destroy] do
+    member do
+      get 'complete'
+    end
+  end
+
   resources :products do
     resources :order_items, only: %i[create update destroy] do
       member do
@@ -22,11 +28,6 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :order_items, only: %i[create update destroy] do
-      member do
-        get 'complete'
-      end
-    end
 
   resources :orders, only: :show
   root 'pages#home'

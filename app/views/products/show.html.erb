@@ -1,14 +1,4 @@
-<!--<div class="pt-5">
 
-</div>
-
-
-		<div class="pt-5">
-		<h1><%= @product.title %></h1>
-		<img src="<%= @product.image %>" class="" alt="..." style="height: 350px;">
-		</div>-->
-		<!--Section: Block Content-->
-		
 		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 		<div class="pt-5">
 <section class="mb-5">
@@ -36,7 +26,7 @@
       </div>
 
     </div>
-    <div class="col-md-6 lefter" style="position: relative; left: -150px; top: 20px;">
+    <div class="col-md-6 lefter">
     	<div class="pt-5">
       <h5><%= @product.title %></h5>
       <p class="mb-2 text-muted text-uppercase small"><%= @product.category.title %></p>
@@ -60,7 +50,10 @@
       </div>
       <hr>
 		<%= link_to 'Add to cart', product_order_items_path(@product), method: :post, class: "btn btn-outline-danger"%>
+
+		<% if allowed_to_comment(@product) %>
 	    <%= link_to 'Add comment', new_comment_path(user_id: current_user, product_id: @product), method: :get, class: "btn btn-outline-danger"%>
+	    <% end %>
     </div>
   </div>
 

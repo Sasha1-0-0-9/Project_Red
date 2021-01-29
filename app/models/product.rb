@@ -13,11 +13,8 @@ class Product < ApplicationRecord
   end
 
   def rating
-  	return 0 if comments.empty?
-  	comments.sum(&:rating).to_f / comments.count.to_f
+    return 0 if comments.empty?
+
+    comments.sum(&:rating).to_f / comments.count
   end
-
-
-
-
 end

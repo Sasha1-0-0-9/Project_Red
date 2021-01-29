@@ -28,10 +28,6 @@ class OrderItemsController < ApplicationController
     redirect_to order_path(current_order)
   end
 
-  def complete
-
-  end
-
   def destroy
     order_item = OrderItem.find(params[:id])
     order_item.destroy

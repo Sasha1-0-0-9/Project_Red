@@ -53,8 +53,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-        @comment = @product.comments
-
+    @comment = @product.comments
   end
 
   def search
@@ -64,10 +63,10 @@ class ProductsController < ApplicationController
     render 'products/index'
   end
 
-      def avg_rating
+  def avg_rating
     @total_rating = 0
     @comments.each { |r| @total_rating += r.rating }
-    @average_rating = (@total_rating.to_f / @comments.count.to_f) if @comments.present?
+    @average_rating = (@total_rating.to_f / @comments.count) if @comments.present?
   end
 
   def destroy

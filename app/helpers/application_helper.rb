@@ -6,8 +6,15 @@ module ApplicationHelper
     link_to(name, options, html_options, &block)
   end
 
-
-      def blank_stars(rating)
+  def blank_stars(rating)
     5 - rating
+  end
+
+  def allowed_to_comment(product)
+    allowed_products = []
+    current_user.order_items.uniq(&:product_id).each do |order_product|
+      allowed_products << order_product.product_id
+    end
+    allowed_products.include?(product.id)
   end
 end
