@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+	 before_action :set_comment, only: [:edit, :update, :destroy]
   def new
     @comment = Comment.new(user_id: params[:user_id], product_id: params[:product_id])
   end
@@ -23,10 +24,19 @@ class CommentsController < ApplicationController
     else
       flash[:danger] = 'Something wrong, sorry!'
     end
-    redirect_to product_path(@product)
+    redirect_to @comment.product
+  end
+
+  def destroy
+    @comment.destroy
+     redirect_to @comment.product
   end
 
   private
+
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
   def comment_params
     params.require(:comment).permit(:user_id, :product_id, :body, :rating)

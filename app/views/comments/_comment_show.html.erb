@@ -16,6 +16,13 @@
       </div>
       <div class="card-body">
         <p class="card-text"><%= comment.body %></p>
+        <div style="text-align: center;">
+        	<% if current_user.email == comment.user.email %>
+        		<%= link_to (fa_icon "pencil"), edit_comment_path(comment), class: "btn btn-outline-danger" %>
+            	<%= link_to (fa_icon "trash-o"), comment_path(comment), method: :delete, class: "btn btn-outline-danger",
+                              data: {confirm: 'Confirm delete your comment?'} %>
+            <% end %>
+         </div>
       </div>
 
         <div class="row">

@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.all
+    @categories = Category.all.paginate(page: params[:page], per_page: 6)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @categories }
