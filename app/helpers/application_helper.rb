@@ -11,12 +11,12 @@ module ApplicationHelper
   end
 
   def allowed_to_comment(product)
-  	if current_user
-	    allowed_products = []
-	    current_user.order_items.uniq(&:product_id).each do |order_product|
-	      allowed_products << order_product.product_id
-	    end
-	    allowed_products.include?(product.id)
+    if current_user
+      allowed_products = []
+      current_user.order_items.uniq(&:product_id).each do |order_product|
+        allowed_products << order_product.product_id
+      end
+      allowed_products.include?(product.id)
     end
   end
 end

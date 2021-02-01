@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-	 before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :set_comment, only: %i[edit update destroy]
   def new
     @comment = Comment.new(user_id: params[:user_id], product_id: params[:product_id])
   end
@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-     redirect_to @comment.product
+    redirect_to @comment.product
   end
 
   private
