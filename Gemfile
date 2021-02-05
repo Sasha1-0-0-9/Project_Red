@@ -68,6 +68,13 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem "capistrano"
+  gem "capistrano-rvm"
+  gem "capistrano-rails"
+  gem "capistrano3-puma", github: "seuros/capistrano-puma"
+  gem "capistrano-nginx", "~> 1.0"
+  gem "capistrano-upload-config"
+  gem "sshkit-sudo"
 end
 
 group :test do
