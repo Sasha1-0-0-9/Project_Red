@@ -7,7 +7,7 @@ ruby '2.7.2'
 gem 'rails', '~> 6.1.1'
 # Use sqlite3 as the database for Active Record
 
-gem 'pg', group: :production
+gem 'pg'
 
 gem 'kaminari'
 
@@ -30,7 +30,6 @@ gem 'image_processing', '~> 1.2'
 
 gem 'aws-sdk-s3', require: false
 
-gem 'sqlite3', '~> 1.4', group: :development
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
